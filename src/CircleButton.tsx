@@ -7,6 +7,7 @@ interface CircleButtonProps {
 const CircleButton: React.FC<CircleButtonProps> = ({ onClick }) => {
   const [isPressed, setIsPressed] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
 
   const handleInteractionStart = () => {
     setIsPressed(true);
@@ -15,7 +16,18 @@ const CircleButton: React.FC<CircleButtonProps> = ({ onClick }) => {
   const handleInteractionEnd = () => {
     setIsPressed(false);
     setIsHovering(false);
+    if (!isTouch) {
+      onClick?.();
+      console.log('Button clicked!');
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsPressed(false);
+    setIsHovering(false);
+    setIsTouch(true);
     onClick?.();
+    console.log('Button clicked!');
   };
 
   const handleInteractionCancel = () => {
@@ -33,9 +45,9 @@ const CircleButton: React.FC<CircleButtonProps> = ({ onClick }) => {
         }}
         onMouseDown={handleInteractionStart}
         onMouseUp={handleInteractionEnd}
-        onTouchStart={handleInteractionStart} // Handle touch start
-        onTouchEnd={handleInteractionEnd} // Handle touch end
-        onTouchCancel={handleInteractionCancel} // Handle touch cancellation
+        onTouchStart={handleInteractionStart}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleInteractionCancel}
       >
         <div
           className={`
