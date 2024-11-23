@@ -19,7 +19,6 @@ function App() {
       const newIndex = (prevIndex + 1) % textArr[languageIndex].length;
       const text = document.getElementById("text");
       text!.textContent = textArr[languageIndex][newIndex];
-      console.log(newIndex);
       return newIndex;
     });
   };  

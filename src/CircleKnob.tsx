@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 interface CircleKnobProps {
-  initialValue?: number;
   onChange?: (value: number) => void;
 }
 
-const CircleKnob: React.FC<CircleKnobProps> = ({ 
-  initialValue = 5, 
+const CircleKnob: React.FC<CircleKnobProps> = ({
   onChange 
 }) => {
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [lastY, setLastY] = useState(0);
@@ -45,7 +43,6 @@ const CircleKnob: React.FC<CircleKnobProps> = ({
       
       setValue(newValue);
       onChange?.(newValue);
-      console.log(newValue);
       setLastY(e.clientY);
     }
   }, [isDragging, lastY, value, onChange]);
