@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import CircleButton from './CircleButton';
@@ -31,6 +31,13 @@ function App() {
       text!.textContent = textArr[newLanguage][textIndex];
     }
   };
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+    return () => {
+      document.body.style.overflow = ''; // Revert on cleanup
+    };
+  }, []);
 
   return (
     <div className="flex h-screen flex-col justify-center gap-3 items-center bg-gray-100">
