@@ -40,13 +40,13 @@ function App() {
   }, []);
 
   return (
-    <div className="flex h-screen flex-col justify-center gap-3 items-center bg-gray-100">
+    <div className="flex flex-col justify-center items-center gap-5 h-screen bg-gray-100">
+      <div id="text" className="text-blue-500 select-none w-[90vw] h-16 flex items-center justify-center text-center">
+        <h1 className="text-center">{textArr[languageIndex][0]}</h1>
+      </div>
       <div className="flex justify-center gap-3 items-center">
         <CircleButton onClick={changeText} />
         <CircleKnob onChange={changeLanguage} />
-      </div>
-      <div id="text" className="text-blue-500 select-none">
-        <h1>{textArr[languageIndex][0]}</h1>
       </div>
     </div>
   );
